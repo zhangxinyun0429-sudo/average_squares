@@ -1,4 +1,5 @@
 """Computation of weighted average of squares."""
+import argparse
 
 
 def average_of_squares(list_of_numbers, list_of_weights=None):
@@ -51,11 +52,26 @@ def convert_numbers(list_of_strings):
 
 
 if __name__ == "__main__":
-    numbers_strings = ["1","2","4"]
-    weight_strings = ["1","1","1"]        
+    # 创建参数解析器
+    parser = argparse.ArgumentParser(
+        description='Calculate the weighted average of squares of numbers'
+    )
     
-    numbers = convert_numbers(numbers_strings)
-    weights = convert_numbers(weight_strings)
+    # 添加 numbers 参数
+    parser.add_argument(
+        'numbers',
+        type=float,
+        nargs='+',
+        help='Numbers to calculate the average of their squares'
+    )
+    
+    # 解析命令行参数
+    args = parser.parse_args()
+    
+    # 使用解析的参数
+    numbers = args.numbers
+    weights = None  # 暂时保持权重硬编码为 None
+           
     
     result = average_of_squares(numbers, weights)
     
